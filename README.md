@@ -1,5 +1,7 @@
 # PropQuest — UK Property Search
 
+![Build](https://github.com/AS7-hub/propquest/actions/workflows/build.yml/badge.svg)
+
 A desktop app that aggregates property listings from Rightmove and Zoopla
 onto a single interactive map, powered by an R-tree spatial index.
 
