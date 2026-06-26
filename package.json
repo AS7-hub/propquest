@@ -1,0 +1,54 @@
+{
+  "name": "propquest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "concurrently \"node server/index.js\" \"electron .\"",
+    "dev": "concurrently \"nodemon server/index.js\" \"electron .\"",
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir"
+  },
+  "build": {
+    "appId": "com.propquest.app",
+    "productName": "PropQuest",
+    "files": [
+      "src/**/*",
+      "server/**/*",
+      "client/**/*",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.18.1",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
+    "express": "^5.2.1",
+    "playwright": "^1.61.1",
+    "rbush": "^4.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "concurrently": "^10.0.3",
+    "nodemon": "^3.1.14",
+    "tailwindcss": "^4.3.1"
+  }
+}

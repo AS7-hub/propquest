@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+*.env
+src/output.css
+/tmp/
+test-*.html
+.DS_Store
+*.log
+.vscode/
+coverage/
+node_modules
