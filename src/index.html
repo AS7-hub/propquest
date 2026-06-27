@@ -30,6 +30,84 @@
 
     <!-- b. SEARCH INPUTS section -->
     <div class="p-5 border-b border-gray-700 flex flex-col gap-5">
+      
+      <!-- ── AI Natural Language Search ─────────────────────────── -->
+      <div class="bg-gray-800 border border-gray-700 rounded-xl p-3 mb-4">
+        
+        <!-- Header row -->
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="text-xs font-medium text-purple-400 uppercase tracking-wide cursor-help"
+            title="Natural language query is sent to an LLM (Gemini/GPT) which extracts structured filter params (price, beds, type). Those params are injected into an R-tree bounding-box spatial query over the loaded property dataset."
+          >AI Search</span>
+          <span class="text-xs bg-purple-900 text-purple-300 px-1.5 py-0.5 rounded text-[10px] font-mono">NLP→R-Tree</span>
+          <span class="text-xs text-gray-500">· powered by NLP</span>
+          <span id="nlp-spinner" style="display:none" class="text-xs text-purple-400 animate-pulse">⟳</span>
+        </div>
+
+        <!-- Input -->
+        <div class="flex gap-2">
+          <input
+            id="nlp-query-input"
+            type="text"
+            onfocus="document.getElementById('nlp-history-list').style.display='block'"
+            onblur="setTimeout(()=>document.getElementById('nlp-history-list').style.display='none',200)"
+            placeholder="3 bed flat under £500k near good schools in South London"
+            class="flex-1 bg-gray-900 text-gray-100 text-xs rounded-lg px-3 py-2 border border-gray-600 focus:border-purple-500 focus:outline-none placeholder-gray-600"
+          />
+          <button
+            id="nlp-search-btn"
+            class="bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium px-3 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Search
+          </button>
+          <button
+            id="nlp-clear-btn"
+            onclick="
+              document.getElementById('nlp-query-input').value='';
+              document.getElementById('nlp-intent-display').style.display='none';
+              document.getElementById('nlp-status').style.display='none';
+            "
+            class="text-gray-500 hover:text-gray-300 text-xs px-2 py-2 rounded-lg transition-colors"
+            title="Clear"
+          >✕</button>
+        </div>
+
+        <div id="nlp-history-list"
+          style="display:none;background:#1f2937;border:0.5px solid #374151;border-radius:8px;margin-top:4px;overflow:hidden;max-height:160px;overflow-y:auto"
+        ></div>
+
+        <!-- Intent display — shows what AI understood -->
+        <div
+          id="nlp-intent-display"
+          class="mt-2 p-2 bg-gray-900 rounded-lg border border-gray-700 text-xs"
+          style="display:none"
+        ></div>
+
+        <!-- Status line -->
+        <p id="nlp-status" class="mt-1 text-xs" style="display:none;font-size:11px"></p>
+
+        <!-- Helper examples (clickable) -->
+        <div class="flex flex-wrap gap-1 mt-2">
+          <button onclick="document.getElementById('nlp-query-input').value=this.dataset.q"
+            data-q="2 bed flat under £400k in East London"
+            class="text-xs text-gray-500 hover:text-purple-400 border border-gray-700 rounded px-2 py-0.5 transition-colors">
+            2 bed East London
+          </button>
+          <button onclick="document.getElementById('nlp-query-input').value=this.dataset.q"
+            data-q="detached house 4 bedrooms over £600k with garden"
+            class="text-xs text-gray-500 hover:text-purple-400 border border-gray-700 rounded px-2 py-0.5 transition-colors">
+            4 bed detached
+          </button>
+          <button onclick="document.getElementById('nlp-query-input').value=this.dataset.q"
+            data-q="studio flat under £250k near tube station"
+            class="text-xs text-gray-500 hover:text-purple-400 border border-gray-700 rounded px-2 py-0.5 transition-colors">
+            Studio near tube
+          </button>
+        </div>
+
+      </div>
+      <!-- ── end AI Search ─────────────────────────────────────────── -->
       <!-- Rightmove -->
       <div>
         <label for="rightmove-url" class="block text-sm font-semibold text-gray-300 mb-1.5 flex items-center justify-between">
@@ -194,6 +272,7 @@
   <script src="../client/filters.js"></script>
   <script src="../client/storage.js"></script>
   <script src="../client/ui.js"></script>
+  <script src="../client/nlp.js"></script>
   <script src="./renderer.js"></script>
 
 </body>

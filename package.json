@@ -1,7 +1,7 @@
 {
   "name": "propquest",
   "version": "1.0.0",
-  "description": "",
+  "description": "UK Property Search Map Tool",
   "main": "src/main.js",
   "scripts": {
     "start": "concurrently \"node server/index.js\" \"electron .\"",
@@ -29,6 +29,9 @@
     },
     "linux": {
       "target": "AppImage"
+    },
+    "directories": {
+      "output": "C:/Temp/propquest-dist"
     }
   },
   "keywords": [],
@@ -36,18 +39,21 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "axios": "^1.18.1",
     "cheerio": "^1.2.0",
     "cors": "^2.8.6",
-    "electron": "^42.5.0",
-    "electron-builder": "^26.15.3",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "openai": "^6.45.0",
     "playwright": "^1.61.1",
     "rbush": "^4.0.1"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.1",
     "concurrently": "^10.0.3",
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
     "nodemon": "^3.1.14",
     "tailwindcss": "^4.3.1"
   }

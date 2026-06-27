@@ -459,7 +459,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   }
-  
+
+  // NLP search bar — Ctrl+Enter or button click
+  const nlpInput = document.getElementById('nlp-query-input');
+  const nlpBtn   = document.getElementById('nlp-search-btn');
+  if (nlpInput && nlpBtn) {
+    nlpBtn.addEventListener('click', () => {
+      window.parseAndSearch(nlpInput.value);
+    });
+    nlpInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        window.parseAndSearch(nlpInput.value);
+      }
+    });
+  }
   // 2. Detail panel close button
   const closeBtn = document.getElementById('close-detail');
   if (closeBtn) {
@@ -688,6 +701,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       const minPrice = document.getElementById('min-price');
       if (minPrice) minPrice.focus();
+    }
+  });
+
+  // Ctrl+K → focus NL search input
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      const nlpInput = document.getElementById('nlp-query-input');
+      if (nlpInput) { nlpInput.focus(); nlpInput.select(); }
     }
   });
 

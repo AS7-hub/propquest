@@ -56,6 +56,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // Restore last NLP query
+  const lastQuery = localStorage.getItem('propquest:lastNLPQuery');
+  if (lastQuery) {
+    const el = document.getElementById('nlp-query-input');
+    if (el) el.value = lastQuery;
+  }
+
   // 3. Set up debounced window.onMapMove handler
   let moveDebounceTimer;
   window.onMapMove = () => {

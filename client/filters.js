@@ -201,5 +201,6 @@ window.onMapMove = () => {
 };
 
 window.readFilters = readFilters;
+// Expose applyFilters globally so nlp.js can trigger it
 window.applyFilters = applyFilters;
 window.renderResultsList = renderResultsList;
